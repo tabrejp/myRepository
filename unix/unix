@@ -1,1 +1,89 @@
 #This is UNIX
+
+
+'------------------------------------------------------------------------------------------------------------------------------------------------------------------
+num1=20
+num2=5
+
+echo (( $num1 + $num2 ))
+echo (( $num1 - $num2 ))
+echo (( $num1 * $num2 ))
+echo (( $num1 / $num2 ))
+
+echo $( num1 + num2 )
+echo $( num1 - num2 )
+echo $( num1 \* num2 )
+echo $( num1 / num2 )
+
+
+--For Floating point numbers
+
+num1=20.5
+num2=5
+
+echo "$num1 + $num2" | bc
+echo "$num1 - $num2" | bc
+echo "$num1 \* $num2" | bc
+echo "scale=2;$num1 / $num2" | bc
+
+
+echo "20.5 + 5" | bc
+echo "20.5 - 5" | bc
+echo "20.5 \* 5" | bc
+echo "scale=2;20.5 / 5" | bc
+
+--Square root of a number
+
+num=27
+
+echo "scale=2;sqrt($num)" | bc -l		--(the bc -l will call the math library)
+
+
+
+'------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+'------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+'------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+'------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--FIles
+# display the files and directories that are in the current directory
+printf "%s\n" *
+# display only the directories in the current directory
+printf "%s\n" */
+# display only (some) image files
+printf "%s\n" *.{gif,jpg,png}
+
+--FIles
+To capture a list of files into a variable for processing, it is typically good practice to use a bash array:
+files=( * )
+# iterate over them
+for file in "${files[@]}"; do
+	echo "$file"
+done
+
+--cat
+Chapter 5: Using cat
+Option Details
+-n Print line numbers
+-v Show non-printing characters using ^ and M- notation except LFD and TAB
+-T Show TAB characters as ^I
+-E Show linefeed(LF) characters as $
+-e Same as -vE
+-b Number nonempty output lines, overrides -n
+-A equivalent to -vET
+-s suppress repeated empty output lines, s refers to squeeze
+
+--Aliases
+to princt all aliases
+#!/bin/bash -li
+# note the -li above! -l makes this behave like a login shell
+# -i makes it behave like an interactive shell
+#
+# shopt -s expand_aliases will not work in most cases
+echo There are ${#BASH_ALIASES[*]} aliases defined.
+for ali in "${!BASH_ALIASES[@]}"; do
+printf "alias: %-10s triggers: %s\n" "$ali" "${BASH_ALIASES[$ali]}"
+done
